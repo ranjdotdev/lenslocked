@@ -11,13 +11,13 @@ import (
 
 func executeTemplate(w http.ResponseWriter, filename string){
 	w.Header().Set("content-type", "text/html")
-	hTmp, err := template.ParseFiles("templates/"+ filename)
+	t, err := template.ParseFiles("templates/"+ filename +".gohtml")
 	if err != nil { 
 		log.Println("Template parsing failed.\n", err)
 		http.Error(w, "There was an error parsing the template.", http.StatusInternalServerError)
 		return;
 	}
-	err = hTmp.Execute(w, nil)
+	err = t.Execute(w, nil)
 	if err != nil { 
 		log.Println("Template execution failed.\n", err)
 		http.Error(w, "There was an error executing the template.", http.StatusInternalServerError)
@@ -26,22 +26,20 @@ func executeTemplate(w http.ResponseWriter, filename string){
 }
 
 func homeHandler (w http.ResponseWriter, r *http.Request) {
-	executeTemplate(w, "home.gohtml")
+	executeTemplate(w, "home")
 }
 func contactHandler (w http.ResponseWriter, r *http.Request) {
-	executeTemplate(w, "contact.gohtml")
+	executeTemplate(w, "contact")
 }
-
-// func userHandler(w http.ResponseWriter, r *http.Request) {
-// 	userID := chi.URLParam(r, "userID")
-// 	w.Write([]byte(fmt.Sprintf("hi %v", userID)))
-//   }
+func faqHandler (w http.ResponseWriter, r *http.Request) {
+	executeTemplate(w, "faq")
+}
 
 func main() {
 	r := chi.NewRouter();
 	r.Get("/", homeHandler)
 	r.Get("/contact", contactHandler)
-	// r.Get("/contact/{userID}", userHandler)
+	r.Get("/faq", faqHandler)
     fmt.Println("Server is running on port 3000")
 	http.ListenAndServe(":3000", r)
 }
