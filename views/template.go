@@ -11,6 +11,13 @@ type Template struct {
 	HTMLTpl *template.Template
 }
 
+func Must(t Template, err error) Template {
+	if err != nil {
+		panic(err)
+	}
+	return t
+}  
+
 func Parse(filename string) (Template, error){
 	tpl, err := template.ParseFiles("templates/"+ filename +".gohtml")
 	if err != nil { 

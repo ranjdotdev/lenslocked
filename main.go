@@ -12,14 +12,13 @@ import (
 func main() {
 	r := chi.NewRouter();
 
-	tpl, err := views.Parse("home"); if err != nil {panic(err)}
-	r.Get("/", controllers.StaticHandler(tpl))
+	r.Get("/", controllers.StaticHandler(views.Must(views.Parse("home"))))
+	r.Get("/contact", controllers.StaticHandler(views.Must(views.Parse("contact"))))
+	r.Get("/faq", controllers.StaticHandler(views.Must(views.Parse("faq"))))
 
-	tpl, err = views.Parse("contact"); if err != nil {panic(err)}
-	r.Get("/contact", controllers.StaticHandler(tpl))
-	
-	tpl, err = views.Parse("faq"); if err != nil {panic(err)}
-	r.Get("/faq", controllers.StaticHandler(tpl))
+	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "Page not found", http.StatusNotFound)
+	})
 
 	fmt.Println("Server is running on port 3000")
 	http.ListenAndServe(":3000", r)
