@@ -6,11 +6,11 @@
         </div> */}}
 
         <div class="mb-4">
-            <input type="email" id="email" name="email" required placeholder="Email Address" class="mt-1 px-4 py-2 w-sm border border-neutral-800 rounded-md shadow-sm focus:outline-none focus:ring-[1px] focus:ring-neutral-500 focus:border-neutral-500 placeholder:text-neutral-600">
+            <input type="email" id="email" name="email" value="{{.Email}}" required placeholder="Email Address" {{if not .Email}}autofocus{{end}} class="mt-1 px-4 py-2 w-sm border border-neutral-800 rounded-md shadow-sm focus:outline-none focus:ring-[1px] focus:ring-neutral-500 focus:border-neutral-500 placeholder:text-neutral-600">
         </div>
 
-        <div class="mb-4">
-            <input type="password" id="password" name="password" required placeholder="Password" class="mt-1 px-4 py-2 w-sm border border-neutral-800 rounded-md shadow-sm focus:outline-none focus:ring-[1px] focus:ring-neutral-500 focus:border-neutral-500 placeholder:text-neutral-600">
+        <div class="mb-6">
+            <input type="password" id="password" name="password" required placeholder="Password" {{if .Email}}autofocus{{end}} class="mt-1 px-4 py-2 w-sm border border-neutral-800 rounded-md shadow-sm focus:outline-none focus:ring-[1px] focus:ring-neutral-500 focus:border-neutral-500 placeholder:text-neutral-600">
         </div>
 
         {{/* <div class="mb-6">
