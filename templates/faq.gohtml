@@ -1,11 +1,14 @@
 {{define "page"}}
-<h2 class='text-2xl font-bold'>FAQ Page</h2>
-<ul>
+<h1 class='py-4 text-4xl font-bold'>FAQ Page</h1>
+<ul class='grid grid-cols-2 gap-4 my-4 mx-4'>
     {{range .}}
         {{template "q&a" .}}
     {{end}}
 {{end}}
 
 {{define "q&a"}}
-    <li><b class='mr-2'>{{.Question}}</b>{{.Answer}}</li>
+    <li class='border-l border-indigo-400 py-1 px-4'>
+        <span class='block text-lg text-neutral-200 semibold'>{{.Question}}</span>
+        <span class='block text-sm text-neutral-400'>{{.Answer}}</span>
+    </li>
 {{end}}
