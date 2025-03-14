@@ -6,13 +6,38 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss"></style>
   </head>
-  <body class="bg-neutral-950 text-neutral-500 flex justify-center items-center min-h-screen">
-    <div class="w-screen px-4">
-      <div class="max-w-4xl mx-auto bg-neutral-900 p-6 rounded-lg shadow-lg">
-        <div class="text-gray-300 py-4">
+  <body class="bg-neutral-950 text-neutral-50 ">
+    <header class="bg-neutral-900 text-white shadow-lg w-full">
+      <nav class="container max-w-6xl mx-auto grid grid-cols-3 py-1 px-4 md:px-6 items-baseline">
+        <!-- Logo (Aligned to baseline) -->
+        <div class="text-2xl font-bold self-baseline">
+          <a href="#">Logo</a>
+        </div>
+
+        <!-- Navigation Links (Centered) -->
+        <div class="hidden md:flex justify-center space-x-6">
+          <a href="/" class="hover:text-neutral-400 transition">Home</a>
+          <a href="/contact" class="hover:text-neutral-400 transition">Contact</a>
+          <a href="/faq" class="hover:text-neutral-400 transition">FAQ</a>
+        </div>
+
+        <!-- Sign In/Sign Up (Aligned to the end) -->
+        <div class="hidden md:flex justify-end">
+          <a href="#" class="px-4 py-1 bg-indigo-600 rounded-lg hover:bg-indigo-600 transition">Sign In</a>
+          <a href="#" class="ml-2 px-4 py-1 border border-indigo-600 rounded-lg hover:bg-indigo-600 transition">Sign Up</a>
+        </div>
+            {{/* <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+              ☰
+            </button> */}}
+      </nav>
+    </header>
+    <main class="w-screen px-4 flex justify-center items-center min-h-[94vh]">
+      <div class="max-w-4xl mx-auto p-6 rounded-lg shadow-lg">
+        <div class="text-neutral-50 py-4 flex flex-col items-center">
           {{template "page" .}}
         </div>
       </div>
-    </div>
+    </main>
+
   </body>
 </html>
