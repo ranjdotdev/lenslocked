@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_USER=ranj
+      - POSTGRES_PASSWORD=A112233a
+      - POSTGRES_DB=lenslocked
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+      - ADMINER_DESIGN=dracula
+    ports:
+      - "3333:8080"
+    depends_on:
+      - db
